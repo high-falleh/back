@@ -8,8 +8,9 @@ USE highFalleh;
 -- Table 'Users'
 -- 
 -- ---
-DROP TABLE IF EXISTS `Users`;
 
+DROP TABLE IF EXISTS `Users`;
+		
 CREATE TABLE `Users` (
   `userId` INTEGER NOT NULL AUTO_INCREMENT,
   `userFullName` VARCHAR(255) NULL DEFAULT NULL,
@@ -31,8 +32,9 @@ CREATE TABLE `Users` (
 -- Table 'Cyties'
 -- 
 -- ---
-DROP TABLE IF EXISTS `Cyties`;
 
+DROP TABLE IF EXISTS `Cyties`;
+		
 CREATE TABLE `Cyties` (
   `cityId` INTEGER NOT NULL AUTO_INCREMENT,
   `cityName` VARCHAR(255) NULL DEFAULT NULL,
@@ -43,8 +45,9 @@ CREATE TABLE `Cyties` (
 -- Table 'Countries'
 -- 
 -- ---
-DROP TABLE IF EXISTS `Countries`;
 
+DROP TABLE IF EXISTS `Countries`;
+		
 CREATE TABLE `Countries` (
   `countryId` INTEGER NOT NULL AUTO_INCREMENT,
   `countryName` VARCHAR(255) NULL DEFAULT NULL,
@@ -55,8 +58,9 @@ CREATE TABLE `Countries` (
 -- Table 'Products'
 -- 
 -- ---
-DROP TABLE IF EXISTS `Products`;
 
+DROP TABLE IF EXISTS `Products`;
+		
 CREATE TABLE `Products` (
   `productId` INTEGER NOT NULL AUTO_INCREMENT,
   `userId` INTEGER NOT NULL,
@@ -66,8 +70,7 @@ CREATE TABLE `Products` (
   `animalBuyingPrice` INTEGER NULL DEFAULT NULL,
   `animalDateOfBirth` DATE NULL DEFAULT NULL,
   `plantUnitPrice` INTEGER NULL DEFAULT NULL,
-  `plantStock` INTEGER NULL DEFAULT NULL,
-  `productCategoryId` INTEGER NULL DEFAULT NULL,
+  `plantStock` INTEGER NULL DEFAULT NULL, 
   `productPicture` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`productId`, `userId`)
 );
@@ -76,8 +79,9 @@ CREATE TABLE `Products` (
 -- Table 'Employees'
 -- 
 -- ---
-DROP TABLE IF EXISTS `Employees`;
 
+DROP TABLE IF EXISTS `Employees`;
+		
 CREATE TABLE `Employees` (
   `employeeId` INTEGER NOT NULL AUTO_INCREMENT,
   `userId` INTEGER NULL DEFAULT NULL,
@@ -92,8 +96,9 @@ CREATE TABLE `Employees` (
 -- Table 'Clients'
 -- 
 -- ---
-DROP TABLE IF EXISTS `Clients`;
 
+DROP TABLE IF EXISTS `Clients`;
+		
 CREATE TABLE `Clients` (
   `clientId` INTEGER NOT NULL AUTO_INCREMENT DEFAULT NULL,
   `userId` INTEGER NULL DEFAULT NULL,
@@ -106,8 +111,9 @@ CREATE TABLE `Clients` (
 -- Table 'Providers'
 -- 
 -- ---
-DROP TABLE IF EXISTS `Providers`;
 
+DROP TABLE IF EXISTS `Providers`;
+		
 CREATE TABLE `Providers` (
   `providerId` INTEGER NOT NULL,
   `userId` INTEGER NOT NULL,
@@ -120,6 +126,7 @@ CREATE TABLE `Providers` (
 -- Table 'ProductCategories'
 -- 
 -- ---
+
 DROP TABLE IF EXISTS `ProductCategories`;
 		
 CREATE TABLE `ProductCategories` (
@@ -129,17 +136,18 @@ CREATE TABLE `ProductCategories` (
   PRIMARY KEY (`productCategoryId`)
 );
 
-
 -- ---
 -- Table 'ProductTypes'
 -- 
 -- ---
+
 DROP TABLE IF EXISTS `ProductTypes`;
 		
 CREATE TABLE `ProductTypes` (
   `productTypeId` INTEGER NOT NULL AUTO_INCREMENT,
   `productTypeLabel` VARCHAR(255) NULL DEFAULT NULL,
-  `productTypePicture` INTEGER NULL DEFAULT NULL,
+  `productTypePicture` VARCHAR(255) NULL DEFAULT NULL,
+  `productCategoryId` INTEGER NULL DEFAULT NULL,
   PRIMARY KEY (`productTypeId`)
 );
 
@@ -147,8 +155,9 @@ CREATE TABLE `ProductTypes` (
 -- Table 'HistorySelling'
 -- 
 -- ---
-DROP TABLE IF EXISTS `HistorySelling`;
 
+DROP TABLE IF EXISTS `HistorySelling`;
+		
 CREATE TABLE `HistorySelling` (
   `historySellingId` INTEGER NOT NULL AUTO_INCREMENT,
   `historySellingAmount` INTEGER NULL DEFAULT NULL,
@@ -166,8 +175,9 @@ CREATE TABLE `HistorySelling` (
 -- Table 'HistoryPaimentEmployee'
 -- 
 -- ---
-DROP TABLE IF EXISTS `HistoryPaimentEmployee`;
 
+DROP TABLE IF EXISTS `HistoryPaimentEmployee`;
+		
 CREATE TABLE `HistoryPaimentEmployee` (
   `historyId` INTEGER NOT NULL AUTO_INCREMENT,
   `historyDate` INTEGER NULL DEFAULT NULL,
@@ -181,8 +191,9 @@ CREATE TABLE `HistoryPaimentEmployee` (
 -- Table 'Transaction'
 -- 
 -- ---
-DROP TABLE IF EXISTS `Transaction`;
 
+DROP TABLE IF EXISTS `Transaction`;
+		
 CREATE TABLE `Transaction` (
   `transactionId` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
   `userId` INTEGER NULL DEFAULT NULL,
@@ -198,8 +209,9 @@ CREATE TABLE `Transaction` (
 -- Table 'HistoryBuying'
 -- 
 -- ---
-DROP TABLE IF EXISTS `HistoryBuying`;
 
+DROP TABLE IF EXISTS `HistoryBuying`;
+		
 CREATE TABLE `HistoryBuying` (
   `historyBuyingId` INTEGER NOT NULL AUTO_INCREMENT DEFAULT NULL,
   `historyBuyingAmount` INTEGER NULL DEFAULT NULL,
@@ -216,8 +228,9 @@ CREATE TABLE `HistoryBuying` (
 -- Table 'Facture'
 -- 
 -- ---
-DROP TABLE IF EXISTS `Facture`;
 
+DROP TABLE IF EXISTS `Facture`;
+		
 CREATE TABLE `Facture` (
   `factureNum` INTEGER NOT NULL AUTO_INCREMENT,
   `userId` INTEGER NOT NULL,
@@ -230,119 +243,35 @@ CREATE TABLE `Facture` (
 -- ---
 -- Foreign Keys 
 -- ---
-ALTER TABLE
-  `Users`
-ADD
-  FOREIGN KEY (cityId) REFERENCES `Cyties` (`cityId`);
 
-ALTER TABLE
-  `Users`
-ADD
-  FOREIGN KEY (countryId) REFERENCES `Countries` (`countryId`);
+ALTER TABLE `Users` ADD FOREIGN KEY (cityId) REFERENCES `Cyties` (`cityId`);
+ALTER TABLE `Users` ADD FOREIGN KEY (countryId) REFERENCES `Countries` (`countryId`);
+ALTER TABLE `Products` ADD FOREIGN KEY (userId) REFERENCES `Users` (`userId`);
+ALTER TABLE `Products` ADD FOREIGN KEY (productTypeId) REFERENCES `ProductTypes` (`productTypeId`);
 
-ALTER TABLE
-  `Products`
-ADD
-  FOREIGN KEY (userId) REFERENCES `Users` (`userId`);
-
-ALTER TABLE
-  `Products`
-ADD
-  FOREIGN KEY (productTypeId) REFERENCES `ProductType` (`productTypeId`);
-
-ALTER TABLE
-  `Products`
-ADD
-  FOREIGN KEY (productCategoryId) REFERENCES `ProductCategory` (`productCategoryId`);
-
-ALTER TABLE
-  `Employees`
-ADD
-  FOREIGN KEY (userId) REFERENCES `Users` (`userId`);
-
-ALTER TABLE
-  `Clients`
-ADD
-  FOREIGN KEY (userId) REFERENCES `Users` (`userId`);
-
-ALTER TABLE
-  `Providers`
-ADD
-  FOREIGN KEY (userId) REFERENCES `Users` (`userId`);
-
-ALTER TABLE
-  `HistorySelling`
-ADD
-  FOREIGN KEY (clientId) REFERENCES `Clients` (`clientId`);
-
-ALTER TABLE
-  `HistorySelling`
-ADD
-  FOREIGN KEY (transactionId) REFERENCES `Transaction` (`transactionId`);
-
-ALTER TABLE
-  `HistorySelling`
-ADD
-  FOREIGN KEY (productId) REFERENCES `Products` (`productId`);
-
-ALTER TABLE
-  `HistorySelling`
-ADD
-  FOREIGN KEY (factureNum) REFERENCES `Facture` (`factureNum`);
-
-ALTER TABLE
-  `HistorySelling`
-ADD
-  FOREIGN KEY (userId) REFERENCES `Users` (`userId`);
-
-ALTER TABLE
-  `HistoryPaimentEmployee`
-ADD
-  FOREIGN KEY (employeeId) REFERENCES `Employees` (`employeeId`);
-
-ALTER TABLE
-  `HistoryPaimentEmployee`
-ADD
-  FOREIGN KEY (transactionId) REFERENCES `Transaction` (`transactionId`);
-
-ALTER TABLE
-  `Transaction`
-ADD
-  FOREIGN KEY (userId) REFERENCES `Users` (`userId`);
-
-ALTER TABLE
-  `HistoryBuying`
-ADD
-  FOREIGN KEY (providerId) REFERENCES `Providers` (`providerId`);
-
-ALTER TABLE
-  `HistoryBuying`
-ADD
-  FOREIGN KEY (userId) REFERENCES `Users` (`userId`);
-
-ALTER TABLE
-  `HistoryBuying`
-ADD
-  FOREIGN KEY (transactionId) REFERENCES `Transaction` (`transactionId`);
-
-ALTER TABLE
-  `HistoryBuying`
-ADD
-  FOREIGN KEY (productId) REFERENCES `Products` (`productId`);
-
-ALTER TABLE
-  `Facture`
-ADD
-  FOREIGN KEY (userId) REFERENCES `Users` (`userId`);
-
-ALTER TABLE
-  `Facture`
-ADD
-  FOREIGN KEY (clientId) REFERENCES `Clients` (`clientId`);
+ALTER TABLE `Employees` ADD FOREIGN KEY (userId) REFERENCES `Users` (`userId`);
+ALTER TABLE `Clients` ADD FOREIGN KEY (userId) REFERENCES `Users` (`userId`);
+ALTER TABLE `Providers` ADD FOREIGN KEY (userId) REFERENCES `Users` (`userId`);
+ALTER TABLE `ProductTypes` ADD FOREIGN KEY (productCategoryId) REFERENCES `ProductCategories` (`productCategoryId`);
+ALTER TABLE `HistorySelling` ADD FOREIGN KEY (clientId) REFERENCES `Clients` (`clientId`);
+ALTER TABLE `HistorySelling` ADD FOREIGN KEY (transactionId) REFERENCES `Transaction` (`transactionId`);
+ALTER TABLE `HistorySelling` ADD FOREIGN KEY (productId) REFERENCES `Products` (`productId`);
+ALTER TABLE `HistorySelling` ADD FOREIGN KEY (factureNum) REFERENCES `Facture` (`factureNum`);
+ALTER TABLE `HistorySelling` ADD FOREIGN KEY (userId) REFERENCES `Users` (`userId`);
+ALTER TABLE `HistoryPaimentEmployee` ADD FOREIGN KEY (employeeId) REFERENCES `Employees` (`employeeId`);
+ALTER TABLE `HistoryPaimentEmployee` ADD FOREIGN KEY (transactionId) REFERENCES `Transaction` (`transactionId`);
+ALTER TABLE `Transaction` ADD FOREIGN KEY (userId) REFERENCES `Users` (`userId`);
+ALTER TABLE `HistoryBuying` ADD FOREIGN KEY (providerId) REFERENCES `Providers` (`providerId`);
+ALTER TABLE `HistoryBuying` ADD FOREIGN KEY (userId) REFERENCES `Users` (`userId`);
+ALTER TABLE `HistoryBuying` ADD FOREIGN KEY (transactionId) REFERENCES `Transaction` (`transactionId`);
+ALTER TABLE `HistoryBuying` ADD FOREIGN KEY (productId) REFERENCES `Products` (`productId`);
+ALTER TABLE `Facture` ADD FOREIGN KEY (userId) REFERENCES `Users` (`userId`);
+ALTER TABLE `Facture` ADD FOREIGN KEY (clientId) REFERENCES `Clients` (`clientId`);
 
 -- ---
 -- Table Properties
 -- ---
+
 -- ALTER TABLE `Users` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `Cyties` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `Countries` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -350,18 +279,20 @@ ADD
 -- ALTER TABLE `Employees` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `Clients` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `Providers` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `ProductCategory` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `ProductType` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `ProductCategories` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `ProductTypes` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `HistorySelling` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `HistoryPaimentEmployee` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `Transaction` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `HistoryBuying` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `Facture` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
 -- ---
 -- Test Data
 -- ---
--- INSERT INTO `Users` (`userId`,`fullName`,`email`,`password`,`telNumber`,`picture`,`dateOfBirth`,`cityId`,`countryId`,`adress`) VALUES
--- ('','','','','','','','','','');
+
+-- INSERT INTO `Users` (`userId`,`userFullName`,`userEmail`,`userPassword`,`userPhone`,`userPicture`,`userDateOfBirth`,`cityId`,`countryId`,`userAdress`,`isActif`,`createDate`,`verifiedEmail`) VALUES
+-- ('','','','','','','','','','','','','');
 -- INSERT INTO `Cyties` (`cityId`,`cityName`) VALUES
 -- ('','');
 -- INSERT INTO `Countries` (`countryId`,`countryName`) VALUES
@@ -374,11 +305,11 @@ ADD
 -- ('','','','');
 -- INSERT INTO `Providers` (`providerId`,`userId`,`fullName`,`telNumber`) VALUES
 -- ('','','','');
--- INSERT INTO `ProductCategory` (`productCategoryId`,`categoryLabel`) VALUES
--- ('','');
--- INSERT INTO `ProductType` (`productTypeId`,`productTypeLabel`) VALUES
--- ('','');
--- INSERT INTO `HistorySelling` (`historySellingId`,`historySellingAmount`,`clientId`,` transactionId`,`productId`,`date`,`quantity`,`factureNum`,`userId`) VALUES
+-- INSERT INTO `ProductCategories` (`productCategoryId`,`productCategoryLabel`,`productCategoryPicture`) VALUES
+-- ('','','');
+-- INSERT INTO `ProductTypes` (`productTypeId`,`productTypeLabel`,`productTypePicture`,`productCategoryId`) VALUES
+-- ('','','','');
+-- INSERT INTO `HistorySelling` (`historySellingId`,`historySellingAmount`,`clientId`,`transactionId`,`productId`,`date`,`quantity`,`factureNum`,`userId`) VALUES
 -- ('','','','','','','','','');
 -- INSERT INTO `HistoryPaimentEmployee` (`historyId`,`historyDate`,`amount`,`employeeId`,`transactionId`) VALUES
 -- ('','','','','');

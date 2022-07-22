@@ -1,0 +1,10 @@
+/* add new History Selling Product*/
+{
+    "historySellingAmout":500,
+    "clientId":1,
+    "userId":1,
+    "productId":1,
+    "date":"2022-07-22",
+    "quantity":1,
+    "factureNum":255
+}
