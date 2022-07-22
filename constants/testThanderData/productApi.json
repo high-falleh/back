@@ -1,0 +1,64 @@
+[
+/* add new Product Category  */
+{
+  "productCategoryLabel":"animal",
+  "productCategoryPicture":""
+},
+/* update Product Category Label params=>productCategoryId  */
+{
+  "newProductCategoryLabel":"cows"
+},
+  /* update Product Category Picture params=>productCategoryId  */
+  {
+    "newProductCategoryPicture":"test"
+  },
+  
+
+  /* add new Product Type  */
+  {
+    "productTypeLabel":"cow",
+    "productTypePicture":"",
+    "productCategoryId":1
+  },
+  /* update Product Type Label params=>productTypeId */
+{
+  "newProductTypeLabel":"cows"
+},
+  /* update Product Type Picture params=>productTypeId */
+  {
+    "newProductTypePicture":"test"
+  },
+  /* update Product Category Id params=>productTypeId */
+  {
+    "newProductCategoryId":2
+  },
+
+/* add new product animal*/ 
+  {
+    "userId":1,
+    "productTypeId":1,
+    "animalWeight":50,
+    "animalSellingPrice":1000,
+    "animalBuyingPrice":2000,
+    "animalDateOfBirth":"2020-01-01",
+    "productPicture":""
+},
+/* add new product plant*/ 
+{
+  "userId":1,
+  "productTypeId":5,
+  "plantUnitPrice":1000,
+  "plantStock":50,
+  "productPicture":""
+},
+
+/* get allProductsByUserIdAndCategoryLabel params=>productId  */
+{
+  "productCategoryLabel":"plant"
+},
+/* updateProductStockByUserIdAndProductIdAndCategoryLabel params=>userId/productId/productCategoryLabel */
+{
+  "newProductStock":5
+}
+
+]
