@@ -1,33 +1,47 @@
 var db = require("../dataBase/connection.js");
 
-const addNewHistorySelling=(req,res)=>{
-    db.query('insert into historySelling set=?',req.body,(err,result)=>{
+const addNewTransaction=(req,res)=>{
+    db.query('INSERT INTO Transactions Set ? ',req.body,(err,result)=>{
         if (err)res.send(['errSQL',err])
-        if (result)res.send(['historySelling was added',result])
+        if (result)res.send(['Transaction was added',result])
     })
 
 }
 
-const selectHistorySellingByUserId=()=>{
-
+const selectAllTransactionsByUserId=(req,res)=>{
+    db.query(`select * transactions where userId=${req.params.userId} `,req.body,(err,result)=>{
+        if (err)res.send(['errSQL',err])
+        if (result)res.send([`historytransaction of userId=${req.params.userId}`,result])
+    })
 }
 
-const addNewHistoryBuying=(req,res)=>{
-    db.query('insert into historyBuying set=?',req.body,(err,result)=>{
+const selectTransactionByUserIdAndProviderId=(req,res)=>{
+    db.query(`select * transactions where userId=${req.params.userId} and providerId=${req.params.providerId} `,req.body,(err,result)=>{
         if (err)res.send(['errSQL',err])
-        if (result)res.send(['historyBuying was added',result])
+        if (result)res.send([`historytransaction of userId=${req.params.userId} and providerId=${req.params.providerId}`,result])
     })
 
 }
-const selectHistoryBuyingByUserId=()=>{
-
+const selectTransactionByUserIdAndEmployeeId=(req,res)=>{
+    db.query(`select * transactions where userId=${req.params.userId} and employeeId=${req.params.employeeId} `,req.body,(err,result)=>{
+        if (err)res.send(['errSQL',err])
+        if (result)res.send([`historytransaction of userId=${req.params.userId} and employeeId=${req.params.employeeId}`,result])
+    })
+}
+const selectTransactionByUserIdAndClientId=(req,res)=>{
+    db.query(`select * transactions where userId=${req.params.userId} and clientId=${req.params.clientId} `,req.body,(err,result)=>{
+        if (err)res.send(['errSQL',err])
+        if (result)res.send([`historytransaction of userId=${req.params.userId} and clientId=${req.params.clientId}`,result])
+    })
 }
 module.exports={
-    addNewHistorySelling,
-    selectHistorySellingByUserId,
+    addNewTransaction,
 
+    selectAllTransactionsByUserId,
 
+    selectTransactionByUserIdAndProviderId,
 
-    addNewHistoryBuying,
-    selectHistoryBuyingByUserId,
+    selectTransactionByUserIdAndEmployeeId,
+
+    selectTransactionByUserIdAndClientId
 }
