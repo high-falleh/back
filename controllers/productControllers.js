@@ -130,7 +130,7 @@ const selectAllProductsInfosByIdUser = (req, res) => {
 const selectAllProductsInfosByIdUserAndCategoryLabel = (req, res) => {
     db.query(`select * from products p inner join ProductTypes pT on pT.productTypeId=p.productTypeId inner join productCategories pC on pT.productCategoryId=pC.productCategoryId where p.userId=${req.params.userId} and pC.productCategoryLabel='${req.body.productCategoryLabel}'`, (err, result) => {
         if (err) res.send(['errSQL', err])
-        if (result) res.send([`all Product ${req.body.productCategoryLabel} `, result])
+        if (result) res.send([`all Product of userId=${req.params.userId} and categoryLabel= ${req.body.productCategoryLabel} `, result])
     })
 }
 const updateProductStockByUserIdAndProductIdAndCategoryLabel = (req, res) => {
