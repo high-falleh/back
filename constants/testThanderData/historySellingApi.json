@@ -1,10 +1,37 @@
-/* add new History Selling Product*/
+/* add new selling transaction */
 {
-    "historySellingAmout":500,
-    "clientId":1,
     "userId":1,
-    "productId":1,
-    "date":"2022-07-22",
-    "quantity":1,
-    "factureNum":255
+    "clientId":1,
+    "transactionDate":"2022-07-22",
+    "transactionTime":"14:26:00",
+    "transactionAmount":650.5,
+    "transactionDescription":"avance",
+    "transactionType":"selling",
+    "productId":1
+}
+
+/* add new buying transaction */
+
+{
+    "userId":1,
+    "providerId":1,
+    "productId":2,
+    "transactionDate":"2022-07-22",
+    "transactionTime":"14:26:00",
+    "transactionAmount":650.5,
+    "transactionDescription":"avance",
+    "transactionType":"buying"
+
+}
+
+/* add new salary transaction */
+
+{
+    "userId":1,
+    "employeeId":1,
+    "transactionDate":"2022-07-22",
+    "transactionTime":"14:26:00",
+    "transactionAmount":650.5,
+    "transactionDescription":"avance",
+    "transactionType":"salary"   
 }

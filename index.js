@@ -17,7 +17,7 @@ app.use(express.json());
 app.use("/api/user",userRouter)
 app.use("/api/product",productRouter)
 app.use("/api/client",clientRouter)
-app.use("api/history",historyRouter)
+app.use("/api/history",historyRouter)
 
 
 app.listen(3000,()=>{
