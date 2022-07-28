@@ -15,7 +15,7 @@ const addNewProvider=(req,res)=>{
         })
     }
   const updateProviderName=(req,res)=>{
-    db.query(`update Providers set ProviderName='${req.body.newProviderName}'  where ProviderId = ${req.params.ProviderId} `, (err, result) => {
+    db.query(`update Providers set providerName='${req.body.newProviderName}'  where providerId = ${req.params.ProviderId} `, (err, result) => {
         if (err) {
             res.send(['errSQL', err])
         } else {
@@ -26,7 +26,7 @@ const addNewProvider=(req,res)=>{
     })
   }
   const updateProviderTel=(req,res)=>{
-    db.query(`update Providers set ProviderTel='${req.body.newProviderTel}'  where ProviderId = ${req.params.ProviderId} `, (err, result) => {
+    db.query(`update Providers set providerTel='${req.body.newProviderTel}'  where providerId = ${req.params.ProviderId} `, (err, result) => {
         if (err) {
             res.send(['errSQL', err])
         } else {
