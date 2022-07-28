@@ -1,16 +1,21 @@
 const router = require("express").Router();
 const controllers=require('../controllers/historyControllers')
 
-/* history selling routes */
-
+/* history transation routes */
 router.post('/addNewTransaction',controllers. addNewTransaction)
+router.post('/selectAllTransactionsByUserId/:userId',controllers.selectAllTransactionsByUserId)
 
-router.get('/selectAllTransactionsByUserId/:userId',controllers.selectAllTransactionsByUserId)
-router.get('/selectTransactionsByUserIdAndProviderId/:userId/:providerId',controllers.selectTransactionByUserIdAndProviderId)
+/* history provider transactions routes */
+router.post('/selectTransactionsByUserIdAndProviderId/:userId/:providerId',controllers.selectTransactionsByUserIdAndProviderId)
 
-router.get('/selectTransactionsByUserIdAndEmployeeId/:userId/:employeeId',controllers.selectTransactionByUserIdAndEmployeeId)
-router.post('/selectTransactionsByUserIdAndEmployeeIdAndMonth/:userId/:employeeId',controllers.selectTransactionByUserIdAndEmployeeIdAndMonth)
+/* history employee transactions routes */
+router.post('/selectTransactionsByUserIdAndEmployeeId/:userId/:employeeId',controllers.selectTransactionsByUserIdAndEmployeeId)
 
-router.get('/selectTransactionsByUserIdAndClientId/:userId/:clientId',controllers.selectTransactionByUserIdAndClientId)
-router.get('/selectTransactionsByUserIdAndproductId/:userId/:productId',controllers.selectTransactionByUserIdAndProductId)
+
+/* history client transactions routes */
+router.post('/selectTransactionsByUserIdAndClientId/:userId/:clientId',controllers.selectTransactionsByUserIdAndClientId)
+/*history product transactions */
+router.post('/selectTransactionsByUserIdAndProductId/:userId/:productId',controllers.selectTransactionsByUserIdAndProductId)
+
+
 module.exports=router
