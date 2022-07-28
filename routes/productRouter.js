@@ -18,7 +18,7 @@ router.put('/updateProductTypePicture/:productTypeId',controllers.updateProductT
 router.put('/updateProductTypeCategoryID/:productTypeId',controllers.updateProductTypeCategoryID)
 router.delete('/deleteProductType/:productTypeId',controllers.deleteProductType)
 
-/* Product Types routes */
+/* Product routes */
 
 router.post('/addNewProduct',controllers.addNewProduct)
 router.get('/getAllProductsByUserId/:userId',controllers.selectAllProductsInfosByIdUser)

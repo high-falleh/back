@@ -89,6 +89,7 @@ CREATE TABLE `Employees` (
   `employeeTel` INTEGER NULL DEFAULT NULL,
   `employeePicture` VARCHAR(255) NULL DEFAULT NULL,
   `employeeSalary` INTEGER NULL DEFAULT NULL,
+  `employeeStatus` INTEGER NULL DEFAULT 1,
   PRIMARY KEY (`employeeId`, `userId`)
 );
 

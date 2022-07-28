@@ -15,7 +15,7 @@ const addNewEmployee=(req,res)=>{
         })
     }
   const updateEmployeeName=(req,res)=>{
-    db.query(`update Employees set EmployeeName='${req.body.newEmployeeName}'  where EmployeeId = ${req.params.employeeId} `, (err, result) => {
+    db.query(`update Employees set employeeName='${req.body.newEmployeeName}'  where EmployeeId = ${req.params.employeeId} `, (err, result) => {
         if (err) {
             res.send(['errSQL', err])
         } else {
@@ -26,7 +26,7 @@ const addNewEmployee=(req,res)=>{
     })
   }
   const updateEmployeeTel=(req,res)=>{
-    db.query(`update Employees set EmployeeTel='${req.body.newEmployeeTel}'  where EmployeeId = ${req.params.employeeId} `, (err, result) => {
+    db.query(`update Employees set employeeTel='${req.body.newEmployeeTel}'  where EmployeeId = ${req.params.employeeId} `, (err, result) => {
         if (err) {
             res.send(['errSQL', err])
         } else {
@@ -36,9 +36,46 @@ const addNewEmployee=(req,res)=>{
         }
     })
   }
+  const updateEmployeePicture=(req,res)=>{
+    db.query(`update Employees set employeePicture='${req.body.newEmployeePicture}'  where EmployeeId = ${req.params.employeeId} `, (err, result) => {
+        if (err) {
+            res.send(['errSQL', err])
+        } else {
+            if (result.affectedRows != 0)
+                res.send(['Employee picture was updated', result])
+            else res.send(['unknown userId', result])
+        }
+    })
+  }
+  const updateEmployeeSalary=(req,res)=>{
+    db.query(`update Employees set employeeSalary='${req.body.newEmployeeSalary}'  where EmployeeId = ${req.params.employeeId} `, (err, result) => {
+        if (err) {
+            res.send(['errSQL', err])
+        } else {
+            if (result.affectedRows != 0)
+                res.send(['Employee Salary was updated', result])
+            else res.send(['unknown userId', result])
+        }
+    })
+  }
+  const updateEmployeeStatus=(req,res)=>{
+    db.query(`update Employees set employeeStatus='${req.body.newEmployeeStatus}'  where EmployeeId = ${req.params.employeeId} `, (err, result) => {
+        if (err) {
+            res.send(['errSQL', err])
+        } else {
+            if (result.affectedRows != 0)
+                res.send(['Employee Status was updated', result])
+            else res.send(['unknown userId', result])
+        }
+    })
+  }
 module.exports={
     addNewEmployee,
     selecAlltEmployeesByUserId,
     updateEmployeeName,
-    updateEmployeeTel
+    updateEmployeeTel,
+    updateEmployeePicture,
+    updateEmployeeSalary,
+    updateEmployeeStatus
+    
 }
