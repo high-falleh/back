@@ -20,8 +20,8 @@ router.delete('/deleteProductType/:productTypeId',controllers.deleteProductType)
 
 /* Product routes */
 
-router.post('/addNewProduct',controllers.addNewProduct)
 router.get('/getAllProductsByUserId/:userId',controllers.selectAllProductsInfosByIdUser)
+router.post('/addNewProduct',controllers.addNewProduct)
 router.post('/getAllProductsByUserIdAndCategoryLabel/:userId',controllers.selectAllProductsInfosByIdUserAndCategoryLabel)
 router.put('/updateProductStockByUserIdAndProductIdAndCategoryLabel/:userId/:productId/:productCategoryLabel',controllers.updateProductStockByUserIdAndProductIdAndCategoryLabel)
 
