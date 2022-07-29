@@ -103,7 +103,7 @@ DROP TABLE IF EXISTS `Clients`;
 CREATE TABLE `Clients` (
   `clientId` INTEGER NOT NULL AUTO_INCREMENT,
   `userId` INTEGER NULL DEFAULT NULL,
-  `clientName` VARCHAR(255) NULL DEFAULT NULL,
+  ` clientName` VARCHAR(255) NULL DEFAULT NULL,
   `clientTel` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`clientId`)
 );
@@ -201,7 +201,7 @@ CREATE TABLE `Transactions` (
   `transactionDate` DATE NULL DEFAULT NULL,
   `transactionTime` TIME NULL DEFAULT NULL,
   `transactionType` VARCHAR(255) NULL DEFAULT NULL,
-  `transactionAmount` FLOAT NULL DEFAULT NULL,
+  `transactionAmount` INTEGER NULL DEFAULT NULL,
   `transactionDescription` VARCHAR(255) NULL DEFAULT NULL,
   `clientId` INTEGER NULL DEFAULT NULL,
   `providerId` INTEGER NULL DEFAULT NULL,
@@ -257,22 +257,11 @@ ALTER TABLE `Employees` ADD FOREIGN KEY (userId) REFERENCES `Users` (`userId`);
 ALTER TABLE `Clients` ADD FOREIGN KEY (userId) REFERENCES `Users` (`userId`);
 ALTER TABLE `Providers` ADD FOREIGN KEY (userId) REFERENCES `Users` (`userId`);
 ALTER TABLE `ProductTypes` ADD FOREIGN KEY (productCategoryId) REFERENCES `ProductCategories` (`productCategoryId`);
-ALTER TABLE `HistorySelling` ADD FOREIGN KEY (clientId) REFERENCES `Clients` (`clientId`);
-ALTER TABLE `HistorySelling` ADD FOREIGN KEY (transactionId) REFERENCES `Transactions` (`transactionId`);
-ALTER TABLE `HistorySelling` ADD FOREIGN KEY (productId) REFERENCES `Products` (`productId`);
-ALTER TABLE `HistorySelling` ADD FOREIGN KEY (factureNum) REFERENCES `Facture` (`factureNum`);
-ALTER TABLE `HistorySelling` ADD FOREIGN KEY (userId) REFERENCES `Users` (`userId`);
-ALTER TABLE `HistoryPaimentEmployee` ADD FOREIGN KEY (employeeId) REFERENCES `Employees` (`employeeId`);
-ALTER TABLE `HistoryPaimentEmployee` ADD FOREIGN KEY (transactionId) REFERENCES `Transactions` (`transactionId`);
 ALTER TABLE `Transactions` ADD FOREIGN KEY (userId) REFERENCES `Users` (`userId`);
 ALTER TABLE `Transactions` ADD FOREIGN KEY (clientId) REFERENCES `Clients` (`clientId`);
 ALTER TABLE `Transactions` ADD FOREIGN KEY (providerId) REFERENCES `Providers` (`providerId`);
 ALTER TABLE `Transactions` ADD FOREIGN KEY (employeeId) REFERENCES `Employees` (`employeeId`);
 ALTER TABLE `Transactions` ADD FOREIGN KEY (productId) REFERENCES `Products` (`productId`);
-ALTER TABLE `HistoryBuying` ADD FOREIGN KEY (providerId) REFERENCES `Providers` (`providerId`);
-ALTER TABLE `HistoryBuying` ADD FOREIGN KEY (userId) REFERENCES `Users` (`userId`);
-ALTER TABLE `HistoryBuying` ADD FOREIGN KEY (transactionId) REFERENCES `Transactions` (`transactionId`);
-ALTER TABLE `HistoryBuying` ADD FOREIGN KEY (productId) REFERENCES `Products` (`productId`);
 ALTER TABLE `Facture` ADD FOREIGN KEY (userId) REFERENCES `Users` (`userId`);
 ALTER TABLE `Facture` ADD FOREIGN KEY (clientId) REFERENCES `Clients` (`clientId`);
 
@@ -307,8 +296,8 @@ ALTER TABLE `Facture` ADD FOREIGN KEY (clientId) REFERENCES `Clients` (`clientId
 -- ('','');
 -- INSERT INTO `Products` (`productId`,`userId`,`productTypeId`,`animalWeight`,`animalSellingPrice`,`animalBuyingPrice`,`animalDateOfBirth`,`plantUnitPrice`,`plantStock`,`productPicture`) VALUES
 -- ('','','','','','','','','','');
--- INSERT INTO `Employees` (`employeeId`,`userId`,`employeeName`,`employeeTel`,`employeePicture`,`employeeSalary`) VALUES
--- ('','','','','','');
+-- INSERT INTO `Employees` (`employeeId`,`userId`,`employeeName`,`employeeTel`,`employeePicture`,`employeeSalary`,`employeeStatus`) VALUES
+-- ('','','','','','','');
 -- INSERT INTO `Clients` (`clientId`,`userId`,` clientName`,`clientTel`) VALUES
 -- ('','','','');
 -- INSERT INTO `Providers` (`providerId`,`userId`,`providerName`,`providerTel`) VALUES
