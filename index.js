@@ -1,5 +1,8 @@
 const express=require('express')
 const cors=require('cors')
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUI = require('swagger-ui-express');
+
 
 const userRouter=require('./routes/userRouter')
 const employeeRouter=require('./routes/employeeRouter')
@@ -10,8 +13,18 @@ const historyRouter=require('./routes/historyRouter')
 
 const app=express()
 
+const swaggerOptions = {
+    swaggerDefinition: {
+      info: {
+        title: "Library API",
+        version: '1.0.0',
+      },
+    },
+    apis: ["./constants/swagger/swagger.js"],
+  };
+  const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
-
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 app.use(cors())
 app.use(express.json());
 
