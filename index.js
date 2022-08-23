@@ -20,7 +20,7 @@ const swaggerOptions = {
         version: '1.0.0',
       },
     },
-    apis: ["./constants/swagger/swagger.js"],
+    apis: ["./constants/swagger/userSwagger.js","./constants/swagger/employeeSwagger.js","./constants/swagger/clientSwagger.js","./constants/swagger/productSwagger.js","./constants/swagger/providerSwagger.js","./constants/swagger/historyTransactionSwagger.js"],
   };
   const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
