@@ -1,6 +1,6 @@
 /* getAllEmployeesByUserId params=>userId */
 
-    axios.post(`http://localhost/api/employee/getAllEmployeesByUserId/:userId`)
+    axios.get(`http://localhost/api/employee/getAllEmployeesByUserId/:userId`)
 
 /* add new employee */
 
