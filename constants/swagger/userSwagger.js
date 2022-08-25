@@ -86,7 +86,7 @@
 
 /**
  * @swagger
- * /api/user/updatePassword/:userId:
+ * /api/user/updatePassword/:
  *  put:
  *      tags:
  *        - User
@@ -120,7 +120,7 @@
 
 /**
  * @swagger
- * /api/user/updateEmail/:userId:
+ * /api/user/updateEmail/:
  *  put:
  *      tags:
  *        - User
