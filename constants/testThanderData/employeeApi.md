@@ -1,10 +1,10 @@
 /* getAllEmployeesByUserId params=>userId */
 
-    axios.post(`http://localhost/api/employee/getAllEmployeesByUserId/:userId`)
+    axios.get(`http://localhost:3000/api/employee/getAllEmployeesByUserId/:userId`)/
 
 /* add new employee */
 
-    axios.post(`http://localhost/api/employee/addNewEmployee`,
+    axios.post(`http://localhost:3000/api/employee/addNewEmployee`,
     {
         "userId": 1,
         "employeeName": "bilel jouini",

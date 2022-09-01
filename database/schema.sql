@@ -28,14 +28,29 @@ CREATE TABLE `Users` (
   PRIMARY KEY (`userId`)
 );
 
+
+-- ---
+-- Table 'session'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `session`;
+		
+CREATE TABLE `session` (
+  `userId` INTEGER NOT NULL AUTO_INCREMENT ,
+  PRIMARY KEY (`userId`)
+);
+ALTER TABLE `session` ADD FOREIGN KEY (userId) REFERENCES `users` (`userId`);
+
+
 -- ---
 -- Table 'Cyties'
 -- 
 -- ---
 
-DROP TABLE IF EXISTS `Cyties`;
+DROP TABLE IF EXISTS `Cities`;
 		
-CREATE TABLE `Cyties` (
+CREATE TABLE `Cities` (
   `cityId` INTEGER NOT NULL AUTO_INCREMENT,
   `cityName` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`cityId`)
@@ -159,18 +174,18 @@ CREATE TABLE `ProductTypes` (
 
 DROP TABLE IF EXISTS `HistorySelling`;
 		
-CREATE TABLE `HistorySelling` (
-  `historySellingId` INTEGER NOT NULL AUTO_INCREMENT,
-  `historySellingAmount` INTEGER NULL DEFAULT NULL,
-  `clientId` INTEGER NULL DEFAULT NULL,
-  `transactionId` INTEGER NULL DEFAULT NULL,
-  `productId` INTEGER NULL DEFAULT NULL,
-  `date` DATE NULL DEFAULT NULL,
-  `quantity` INTEGER NULL DEFAULT NULL,
-  `factureNum` INTEGER NULL DEFAULT NULL,
-  `userId` INTEGER NOT NULL,
-  PRIMARY KEY (`historySellingId`, `userId`)
-);
+-- CREATE TABLE `HistorySelling` (
+--   `historySellingId` INTEGER NOT NULL AUTO_INCREMENT,
+--   `historySellingAmount` INTEGER NULL DEFAULT NULL,
+--   `clientId` INTEGER NULL DEFAULT NULL,
+--   `transactionId` INTEGER NULL DEFAULT NULL,
+--   `productId` INTEGER NULL DEFAULT NULL,
+--   `date` DATE NULL DEFAULT NULL,
+--   `quantity` INTEGER NULL DEFAULT NULL,
+--   `factureNum` INTEGER NULL DEFAULT NULL,
+--   `userId` INTEGER NOT NULL,
+--   PRIMARY KEY (`historySellingId`, `userId`)
+-- );
 
 -- ---
 -- Table 'HistoryPaimentEmployee'
@@ -179,14 +194,14 @@ CREATE TABLE `HistorySelling` (
 
 DROP TABLE IF EXISTS `HistoryPaimentEmployee`;
 		
-CREATE TABLE `HistoryPaimentEmployee` (
-  `historyId` INTEGER NOT NULL AUTO_INCREMENT,
-  `historyDate` INTEGER NULL DEFAULT NULL,
-  `amount` INTEGER NULL DEFAULT NULL,
-  `employeeId` INTEGER NULL DEFAULT NULL,
-  `transactionId` INTEGER NULL DEFAULT NULL,
-  PRIMARY KEY (`historyId`)
-);
+-- CREATE TABLE `HistoryPaimentEmployee` (
+--   `historyId` INTEGER NOT NULL AUTO_INCREMENT,
+--   `historyDate` INTEGER NULL DEFAULT NULL,
+--   `amount` INTEGER NULL DEFAULT NULL,
+--   `employeeId` INTEGER NULL DEFAULT NULL,
+--   `transactionId` INTEGER NULL DEFAULT NULL,
+--   PRIMARY KEY (`historyId`)
+-- );
 
 -- ---
 -- Table 'Transactions'
@@ -217,17 +232,17 @@ CREATE TABLE `Transactions` (
 
 DROP TABLE IF EXISTS `HistoryBuying`;
 		
-CREATE TABLE `HistoryBuying` (
-  `historyBuyingId` INTEGER NOT NULL AUTO_INCREMENT DEFAULT NULL,
-  `historyBuyingAmount` INTEGER NULL DEFAULT NULL,
-  `providerId` INTEGER NULL DEFAULT NULL,
-  `userId` INTEGER NOT NULL,
-  `transactionId` INTEGER NULL DEFAULT NULL,
-  `date` DATE NULL DEFAULT NULL,
-  `quantity` INTEGER NULL DEFAULT NULL,
-  `productId` INTEGER NULL DEFAULT NULL,
-  PRIMARY KEY (`historyBuyingId`, `userId`)
-);
+-- CREATE TABLE `HistoryBuying` (
+--   `historyBuyingId` INTEGER NOT NULL AUTO_INCREMENT DEFAULT NULL,
+--   `historyBuyingAmount` INTEGER NULL DEFAULT NULL,
+--   `providerId` INTEGER NULL DEFAULT NULL,
+--   `userId` INTEGER NOT NULL,
+--   `transactionId` INTEGER NULL DEFAULT NULL,
+--   `date` DATE NULL DEFAULT NULL,
+--   `quantity` INTEGER NULL DEFAULT NULL,
+--   `productId` INTEGER NULL DEFAULT NULL,
+--   PRIMARY KEY (`historyBuyingId`, `userId`)
+-- );
 
 -- ---
 -- Table 'Facture'
@@ -249,7 +264,7 @@ CREATE TABLE `Facture` (
 -- Foreign Keys 
 -- ---
 
-ALTER TABLE `Users` ADD FOREIGN KEY (cityId) REFERENCES `Cyties` (`cityId`);
+ALTER TABLE `Users` ADD FOREIGN KEY (cityId) REFERENCES `Cities` (`cityId`);
 ALTER TABLE `Users` ADD FOREIGN KEY (countryId) REFERENCES `Countries` (`countryId`);
 ALTER TABLE `Products` ADD FOREIGN KEY (userId) REFERENCES `Users` (`userId`);
 ALTER TABLE `Products` ADD FOREIGN KEY (productTypeId) REFERENCES `ProductTypes` (`productTypeId`);
