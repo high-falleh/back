@@ -10,7 +10,7 @@
       "userFullName": "khalil kraiem",
       "userEmail": "khalilkraiemmedia@gmail.com",
       "userPassword": "11019029",
-      "userDateOfBirth": "21-10-1992",
+      "userDateOfBirth": "1992-10-21",
       "userPhone": "52701262"
     })
 
