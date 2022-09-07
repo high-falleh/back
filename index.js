@@ -36,6 +36,13 @@ app.use("/api/client",clientRouter)
 app.use("/api/provider",providerRouter)
 app.use("/api/history",historyRouter)
 
+app.use('/HEND',(req,res)=>{
+  res.send('hello hend')
+})
+app.use('/khalil',(req,res)=>{
+  res.send('hello KHLHJQDLFJ')
+}
+)
 
 
 app.listen(3000,()=>{
