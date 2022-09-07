@@ -103,8 +103,8 @@
  *            schema:
  *              type: object
  *              required:
- *                  - userEmail
- *                  - userPassword
+ *                  - current
+ *                  - newPassword
  *              properties:
  *                  current:
  *                      type: string
