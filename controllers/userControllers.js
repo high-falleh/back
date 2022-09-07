@@ -148,7 +148,52 @@ const selectAllUsers = (req, res) => {
         }
     });
 };
-
+const insertSession = (req, res) => {
+    var params = req.body;
+    db.query("select * from session where userId=?", params, (err, result) => {
+      if (err) {
+        res.send(err);
+      } else {
+        if (result.length > 0) {
+          res.send("you are connected in an other device");
+        } else {
+          const sql = "INSERT INTO session Set ?";
+          db.query(sql, params, (err, result) => {
+            if (err) {
+              console.log(err);
+              res.send(err);
+            } else {
+              res.send("welcome");
+            }
+          });
+        }
+      }
+    });
+  };
+  const deleteSession = (req, res) => {
+    var params = req.params.userId;
+    const sql = "DELETE FROM session WHERE userId=?";
+    db.query(sql, params, (err, result) => {
+      if (err) {
+        res.send(err);
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    });
+  };
+  const selectSession = (req, res) => {
+    var params = req.params.userId;
+    const sql = "select * from user where userId=?";
+    db.query(sql, params, (err, result) => {
+      if (err) {
+        res.send(err);
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    });
+  };
 
 
 
@@ -166,5 +211,8 @@ module.exports = {
     updateEmail,
     updateFullName,
     updatePhone,
-    updatePassword
+    updatePassword,
+    selectSession,
+    deleteSession,
+    insertSession
 }
